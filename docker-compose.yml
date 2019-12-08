@@ -1,0 +1,40 @@
+version: '2'
+services:
+  nginx:
+    build:
+      context: ./docker/nginx
+    ports:
+      - 127.0.0.1:8090:80
+    volumes:
+      - ./:/var/www:delegated
+    depends_on:
+      - php-fpm
+    restart: always
+
+  php-fpm:
+    build:
+      context: ./docker/php-fpm
+    environment:
+      - XDEBUG_ENABLED=1
+    volumes:
+      - ./:/var/www:delegated
+    restart: always
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.0.1
+    restart: always
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+#  kibana:
+#    depends_on:
+#      - elasticsearch
+#    environment:
+#      ELASTICSEARCH_URL: http://0.0.0.0:9200
+#    image: docker.elastic.co/kibana/kibana-oss:6.4.1
+#    ports:
+#      - 5601:5601
+#    restart: always
