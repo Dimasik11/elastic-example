@@ -1,4 +1,5 @@
 <?php
+
 namespace models;
 
 use Elasticsearch\Client;
@@ -13,7 +14,7 @@ class ElasticComponent
     const TYPE_NAME = 'search-name';
     const INDEX_NAME = 'example-index';
 
-    /** @var \Elasticsearch\Client  */
+    /** @var \Elasticsearch\Client */
     private $client;
 
     public function __construct()
@@ -111,18 +112,16 @@ class ElasticComponent
     private function getMappings()
     {
         return [
-            self::TYPE_NAME => [
-                'properties' => [
-                    'last_name' => [
-                        'type' => 'text',
-                        'analyzer' => 'edge_ngram_analyzer',
-                        'search_analyzer' => 'standard'
-                    ],
-                    'first_name' => [
-                        'type' => 'text',
-                        'analyzer' => 'edge_ngram_analyzer',
-                        'search_analyzer' => 'standard'
-                    ],
+            'properties' => [
+                'last_name' => [
+                    'type' => 'text',
+                    'analyzer' => 'edge_ngram_analyzer',
+                    'search_analyzer' => 'standard'
+                ],
+                'first_name' => [
+                    'type' => 'text',
+                    'analyzer' => 'edge_ngram_analyzer',
+                    'search_analyzer' => 'standard'
                 ],
             ],
         ];

@@ -15,10 +15,24 @@ $(document).ready(function () {
 
 
     const createIndex = ($object) => {
-        console.log('create');
+        $.ajax({
+            url: '/createIndex.php',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+            },
+        });
     };
 
     const deleteIndex = ($object) => {
-        console.log('delete');
+        $.ajax({
+            url: '/deleteIndex.php',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+            },
+        });
     };
 });

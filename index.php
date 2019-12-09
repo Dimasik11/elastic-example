@@ -20,7 +20,7 @@ $model = new SearchModel();
           integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=1"></script>
 
     <title>Пример работы с elastic-search</title>
 </head>

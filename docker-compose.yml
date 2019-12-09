@@ -3,6 +3,8 @@ services:
   nginx:
     build:
       context: ./docker/nginx
+    links:
+      - elasticsearch
     ports:
       - 127.0.0.1:8090:80
     volumes:
@@ -14,10 +16,14 @@ services:
   php-fpm:
     build:
       context: ./docker/php-fpm
+    env_file:
+      - .env
     environment:
       - XDEBUG_ENABLED=1
     volumes:
       - ./:/var/www:delegated
+    links:
+      - elasticsearch
     restart: always
 
   elasticsearch:
@@ -26,8 +32,8 @@ services:
     environment:
       - discovery.type=single-node
     ports:
-      - 9200:9200
-      - 9300:9300
+      - 127.0.0.1:9200:9200
+#      - 9300:9300
 
 #  kibana:
 #    depends_on:
