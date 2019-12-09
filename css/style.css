@@ -1,0 +1,13 @@
+.search-block {
+    width: 50%;
+    margin: 20px auto auto;
+}
+
+.btn-index-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    height: 80px;
+}

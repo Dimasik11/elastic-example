@@ -1,0 +1,13 @@
+{
+    "name": "zhdmirty/elastic-example",
+    "description": "Example elasticsearch",
+    "authors": [
+        {
+            "name": "Dmitriy Zhavoronkov",
+            "email": "zhavoronkovd11@gmail.com"
+        }
+    ],
+    "require": {
+        "elasticsearch/elasticsearch": "^7.4"
+    }
+}
