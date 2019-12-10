@@ -1,12 +1,11 @@
 <?php
-
-use models\SearchModel;
-
 require_once 'basic/Autoloader.php';
 require_once 'vendor/autoload.php';
 
 Autoloader::autoload();
 
-$model = new SearchModel($_GET['term']);
+use models\ElasticComponent;
 
-echo json_encode($model->search());
+$model = new ElasticComponent();
+
+$model->loadData();

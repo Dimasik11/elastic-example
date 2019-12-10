@@ -11,3 +11,14 @@
     margin-top: 20px;
     height: 80px;
 }
+
+.result-block {
+    width: 50%;
+    margin: 20px auto auto;
+    box-shadow: 3px 1px 11px -1px #a08282;
+    border-radius: 4px;
+}
+
+.result-block > div {
+    text-align: center;
+}

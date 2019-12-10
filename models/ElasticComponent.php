@@ -1,5 +1,4 @@
 <?php
-
 namespace models;
 
 use Elasticsearch\Client;
@@ -58,6 +57,33 @@ class ElasticComponent
         echo 'success delete index';
     }
 
+
+    /**
+     * Загрузка фамилий
+     */
+    public function loadData()
+    {
+        $data = file_get_contents(__DIR__ . '/../files/lastnames.txt');
+        $lastNames = explode(',', $data);
+        foreach ($lastNames as $key => $value) {
+            $params['body'][] = [
+                'index' => [
+                    '_index' => self::INDEX_NAME,
+                    '_type' => self::TYPE_NAME,
+                    '_id' => $key,
+                ]
+            ];
+
+            $params['body'][] = [
+                'id' => $key,
+                'last_name' => $value,
+            ];
+
+            $this->getClient()->bulk($params);
+        }
+        echo 'success load data';
+    }
+
     /**
      * Построить тело запроса
      *
@@ -112,16 +138,18 @@ class ElasticComponent
     private function getMappings()
     {
         return [
-            'properties' => [
-                'last_name' => [
-                    'type' => 'text',
-                    'analyzer' => 'edge_ngram_analyzer',
-                    'search_analyzer' => 'standard'
-                ],
-                'first_name' => [
-                    'type' => 'text',
-                    'analyzer' => 'edge_ngram_analyzer',
-                    'search_analyzer' => 'standard'
+            self::TYPE_NAME => [
+                'properties' => [
+                    'last_name' => [
+                        'type' => 'text',
+                        'analyzer' => 'edge_ngram_analyzer',
+                        'search_analyzer' => 'standard'
+                    ],
+                    'first_name' => [
+                        'type' => 'text',
+                        'analyzer' => 'edge_ngram_analyzer',
+                        'search_analyzer' => 'standard'
+                    ],
                 ],
             ],
         ];
