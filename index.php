@@ -18,7 +18,7 @@ Autoloader::autoload();
     <link rel="stylesheet" href="css/style.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/jquery-debounce.js"></script>
-    <script src="js/script.js?v=1"></script>
+    <script src="js/script.js?v=2"></script>
 
     <title>Пример работы с elastic-search</title>
 </head>
@@ -27,6 +27,9 @@ Autoloader::autoload();
     <div class="btn-index-block">
         <button class="create-index btn btn-success">
             Создать индекс
+        </button>
+        <button class="insert-data btn btn-default">
+            Залить данные
         </button>
         <button class="delete-index btn btn-danger">
             Удалить индекс

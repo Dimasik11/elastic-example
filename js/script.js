@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     let $btnCreate = $('.create-index'),
         $btnDelete = $('.delete-index'),
+        $btnInsert = $('.insert-data'),
         $resultBlock = $('.result-block'),
         $searchField = $('#search-field');
     
@@ -16,6 +17,10 @@ $(document).ready(function () {
 
     $btnDelete.on('click', function () {
         deleteIndex($(this));
+    });
+
+    $btnInsert.on('click', function () {
+        insertData();
     });
 
     // Отправляем запросы на получение адресов черезе DELAY после окончания ввода
@@ -36,6 +41,8 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 console.log(data);
+                console.log(2312);
+                alert('Индекс успешно создан');
             },
         });
     };
@@ -47,6 +54,8 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 console.log(data);
+                console.log(2312);
+                alert('Индекс успешно удален');
             },
         });
     };
@@ -60,6 +69,18 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 showListLastNames(response);
+            },
+        });
+    };
+
+    const insertData = () => {
+        $.ajax({
+            url: '/insertLastName.php',
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+                alert('Данные успешно залиты');
             },
         });
     };

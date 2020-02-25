@@ -108,11 +108,11 @@ class ElasticComponent
         return [
             'analysis' => [
                 'analyzer' => [
-                    'edge_ngram_analyzer' => [
+                    'stop_analyzer' => [
                         'tokenizer' => 'standard',
                         'filter' => [
                             'lowercase',
-                            'edge_ngram_filter'
+                            'ru_stop',
                         ]
                     ]
                 ],
@@ -125,6 +125,10 @@ class ElasticComponent
                             'punctuation',
                             'digit'
                         ]
+                    ],
+                    'ru_stop' => [
+                        'type' => 'stop',
+                        'stopwords' => ["проспект", "улица"],
                     ]
                 ]
             ]
@@ -142,13 +146,11 @@ class ElasticComponent
                 'properties' => [
                     'last_name' => [
                         'type' => 'text',
-                        'analyzer' => 'edge_ngram_analyzer',
-                        'search_analyzer' => 'standard'
+                        'analyzer' => 'stop_analyzer',
                     ],
                     'first_name' => [
                         'type' => 'text',
-                        'analyzer' => 'edge_ngram_analyzer',
-                        'search_analyzer' => 'standard'
+                        'analyzer' => 'stop_analyzer',
                     ],
                 ],
             ],
